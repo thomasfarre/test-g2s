@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <nav>
-      <RouterLink to="/first-exercise">First Exercise</RouterLink> |
-      <RouterLink to="/second-exercise">Second Exercise</RouterLink> |
-      <RouterLink to="/third-exercise">Third Exercise</RouterLink>
+      <RouterLink to="/first-exercise">Exercice 1</RouterLink> |
+      <RouterLink to="/second-exercise">Exercice 2</RouterLink> |
+      <RouterLink to="/third-exercise">Exercice 3</RouterLink>
     </nav>
   </header>
 
