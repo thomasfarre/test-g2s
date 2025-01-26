@@ -1,5 +1,6 @@
 import { mount } from "@vue/test-utils";
-import CenteredText from "../src/components/CenteredText.vue";
+import CenteredText from "../../src/components/CenteredText.vue";
+import { describe, it, expect } from 'vitest';
 
 describe("CenteredText.vue", () => {
   it("renders the initial text", () => {

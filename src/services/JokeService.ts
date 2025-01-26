@@ -15,7 +15,10 @@ export class JokeService {
       this.cache.set(joke.id, joke);
       return joke;
     } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Failed to fetch joke');
+      if (error.response?.data?.error) {
+        throw new Error(error.response.data.message || 'Unknown error occurred');
+      }
+      throw new Error('Failed to fetch joke');
     }
   }
 
