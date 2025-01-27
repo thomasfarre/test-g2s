@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from 'vue';
-import { useJokeStore } from '../stores/jokeStore';
+import { useJoke } from '../composables/useJoke';
+import { useJokeStore } from '../stores/JokeStore';
 
-// Utilisation du store pour accéder aux blagues et aux erreurs
+// Utilisation du store pour accéder aux blagues
 const jokeStore = useJokeStore();
+const { getJoke } = useJoke(); // Utilisation du composable pour obtenir une blague
 const showDelivery = ref(false);  // État pour contrôler l'affichage de la réponse
 const countdown = ref(5);  // Compteur pour le délai avant l'affichage de la réponse
 let countdownInterval: number | undefined;
 
 // Fonction pour obtenir une nouvelle blague et démarrer le compte à rebours
-const getJoke = async () => {
-  await jokeStore.fetchJoke();  // Récupération de la blague via le store
+const fetchJoke = async () => {
+  await getJoke();  // Récupération de la blague via le composable
   showDelivery.value = false;  // Masquer la réponse initialement
   countdown.value = 5;  // Réinitialiser le compteur
   startCountdown();  // Démarrer le compte à rebours
@@ -32,6 +34,7 @@ const startCountdown = () => {
 // Nettoyer l'intervalle lors du démontage du composant
 onUnmounted(() => {
   clearInterval(countdownInterval);
+  jokeStore.joke = null;
 });
 </script>
 
@@ -39,8 +42,7 @@ onUnmounted(() => {
   <div class="container">
     <h1 class="title">Exercice 2</h1>
     <p class="description">Au clic sur un nouveau bouton, afficher une blague aléatoire en utilisant l'api https://jokeapi.dev/. Afficher la question de la blague puis après un temps d'attente de 5 secondes afficher la réponse. NB : L'affichage (disposition, transition,..) est laissé libre.</p>
-    <button @click="getJoke">Obtenir une blague</button>
-    <div v-if="jokeStore.error" class="error">{{ jokeStore.error }}</div>
+    <button @click="fetchJoke">Obtenir une blague</button>
     <div v-if="jokeStore.joke" class="joke-container">
       <p>{{ jokeStore.joke.setup }}</p>
       <p v-if="!showDelivery">Réponse dans: {{ countdown }} secondes</p>

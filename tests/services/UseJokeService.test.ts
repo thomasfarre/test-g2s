@@ -1,18 +1,20 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import axios from 'axios';
-import { fetchJoke } from '../../src/services/JokeService';
-import { Joke } from '../../src/interfaces/Joke';
+import { useJokeService } from '../../src/services/UseJokeService';
+import { Joke } from '../../src/models/Joke';
 
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios, true);
 
-describe('JokeService', () => {
+describe('useJokeService', () => {
+  const { getJokeService } = useJokeService();
+
   it('should fetch a joke successfully', async () => {
     const mockApiResponse = { id: '1', setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
     const expectedJoke: Joke = { id: '1', setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
     mockedAxios.get.mockResolvedValue({ data: mockApiResponse });
 
-    const joke = await fetchJoke();
+    const joke = await getJokeService();
     expect(joke).toEqual(expectedJoke);
   });
 
@@ -20,12 +22,12 @@ describe('JokeService', () => {
     const errorMessage = 'Unknown error occurred';
     mockedAxios.get.mockResolvedValue({ data: { error: true, message: errorMessage } });
 
-    await expect(fetchJoke()).rejects.toThrow(errorMessage);
+    await expect(getJokeService()).rejects.toThrow(errorMessage);
   });
 
   it('should throw an error if the request fails', async () => {
     mockedAxios.get.mockRejectedValue(new Error('Network Error'));
 
-    await expect(fetchJoke()).rejects.toThrow('Unknown error occurred');
+    await expect(getJokeService()).rejects.toThrow('Unknown error occurred');
   });
 });
