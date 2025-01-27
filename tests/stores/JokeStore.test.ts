@@ -3,6 +3,7 @@ import { useJokeStore } from '../../src/stores/JokeStore';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import axios from 'axios';
 import { useJokeService } from '../../src/services/UseJokeService';
+import { Joke } from '../../src/models/Joke';
 
 vi.mock('axios');
 const mockedAxios = vi.mocked(axios, true);
@@ -33,7 +34,7 @@ describe('jokeStore', () => {
     try {
       await getJokeService();
     } catch (error) {
-      store.setJoke(null);
+      store.setJoke(null as unknown as Joke);
     }
 
     expect(store.joke).toBeNull();
@@ -47,7 +48,7 @@ describe('jokeStore', () => {
     try {
       await getJokeService();
     } catch (error) {
-      store.setJoke(null);
+      store.setJoke(null as unknown as Joke);
     }
 
     expect(store.joke).toBeNull();

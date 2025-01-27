@@ -10,8 +10,8 @@ describe('useJokeService', () => {
   const { getJokeService } = useJokeService();
 
   it('should fetch a joke successfully', async () => {
-    const mockApiResponse = { id: '1', setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
-    const expectedJoke: Joke = { id: '1', setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
+    const mockApiResponse = { id: 1, setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
+    const expectedJoke: Joke = { id: 1, setup: 'Why did the chicken cross the road?', delivery: 'To get to the other side!' };
     mockedAxios.get.mockResolvedValue({ data: mockApiResponse });
 
     const joke = await getJokeService();

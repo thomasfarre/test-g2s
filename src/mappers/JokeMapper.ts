@@ -2,7 +2,7 @@ import { Joke } from '../models/Joke';
 
 // Définition du type du DTO renvoyé par l'API
 interface JokeDto {
-  id: string;
+  id: number;
   setup?: string;
   joke?: string;
   delivery?: string;
