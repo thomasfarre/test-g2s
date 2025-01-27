@@ -1,7 +1,11 @@
 <template>
-  <div class="exercise exercise--first">
-    <h1 class="exercise__title">Exercice 1</h1>
-    <p class="exercise__description">Centrer le texte vert dans le carré jaune. Ajouter un champ texte permettant de modifier le texte vert à la volée.</p>
+  <div class="exercise">
+    <h1 class="exercise__title">
+      Exercice 1
+    </h1>
+    <p class="exercise__description">
+      Centrer le texte vert dans le carré jaune. Ajouter un champ texte permettant de modifier le texte vert à la volée.
+    </p>
     <CenteredText />
   </div>
 </template>

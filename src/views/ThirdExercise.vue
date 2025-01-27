@@ -1,5 +1,5 @@
 <template>
-  <div class="exercise exercise--third">
+  <div class="exercise">
     <h1 class="exercise__title">Exercice 3</h1>
     <p class="exercise__description">Afficher la liste des posts de l'api de mock https://jsonplaceholder.typicode.com/. Ajouter un formulaire de création et les appels API correspondant pour un post. Ajouter une zone affichant le détail d'un post lorsqu'on le sélectionne dans la liste. Ajouter la possibilité de mettre à jour les champs modifiables d'un post. Ajouter la possibilité de supprimer un post.</p>
     <form @submit.prevent="handleSubmit" class="exercise__form">

@@ -1,45 +1,5 @@
-<script setup lang="ts">
-import { ref, onUnmounted } from 'vue';
-import { useJoke } from '../composables/useJoke';
-import { useJokeStore } from '../stores/JokeStore';
-
-// Utilisation du store pour accéder aux blagues
-const jokeStore = useJokeStore();
-const { getJoke } = useJoke(); // Utilisation du composable pour obtenir une blague
-const showDelivery = ref(false);  // État pour contrôler l'affichage de la réponse
-const countdown = ref(5);  // Compteur pour le délai avant l'affichage de la réponse
-let countdownInterval: number | undefined;
-
-// Fonction pour obtenir une nouvelle blague et démarrer le compte à rebours
-const fetchJoke = async () => {
-  await getJoke();  // Récupération de la blague via le composable
-  showDelivery.value = false;  // Masquer la réponse initialement
-  countdown.value = 5;  // Réinitialiser le compteur
-  startCountdown();  // Démarrer le compte à rebours
-};
-
-// Fonction pour gérer le compte à rebours
-const startCountdown = () => {
-  clearInterval(countdownInterval);  // Nettoyer tout intervalle existant
-  countdownInterval = setInterval(() => {
-    if (countdown.value > 0) {
-      countdown.value--;  // Décrémenter le compteur
-    } else {
-      showDelivery.value = true;  // Afficher la réponse une fois le temps écoulé
-      clearInterval(countdownInterval);  // Arrêter le compte à rebours
-    }
-  }, 1000);
-};
-
-// Nettoyer l'intervalle lors du démontage du composant
-onUnmounted(() => {
-  clearInterval(countdownInterval);
-  jokeStore.joke = null;
-});
-</script>
-
 <template>
-  <div class="exercise exercise--second">
+  <div class="exercise">
     <h1 class="exercise__title">Exercice 2</h1>
     <p class="exercise__description">Au clic sur un nouveau bouton, afficher une blague aléatoire en utilisant l'api https://jokeapi.dev/. Afficher la question de la blague puis après un temps d'attente de 5 secondes afficher la réponse. NB : L'affichage (disposition, transition,..) est laissé libre.</p>
     <button class="exercise__button" @click="fetchJoke">Obtenir une blague</button>
@@ -50,6 +10,42 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, onUnmounted } from 'vue';
+import { useJoke } from '../composables/useJoke';
+import { useJokeStore } from '../stores/JokeStore';
+
+const jokeStore = useJokeStore();
+const { getJoke } = useJoke();
+const showDelivery = ref(false);
+const countdown = ref(5);
+let countdownInterval: number | undefined;
+
+const fetchJoke = async () => {
+  await getJoke();
+  showDelivery.value = false;
+  countdown.value = 5;
+  startCountdown();
+};
+
+const startCountdown = () => {
+  clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    if (countdown.value > 0) {
+      countdown.value--;
+    } else {
+      showDelivery.value = true;
+      clearInterval(countdownInterval);
+    }
+  }, 1000);
+};
+
+onUnmounted(() => {
+  clearInterval(countdownInterval);
+  jokeStore.joke = null;
+});
+</script>
 
 <style scoped>
 .exercise {

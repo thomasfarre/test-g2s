@@ -8,7 +8,7 @@ export const useJoke = () => {
   const getJoke = async () => {
     try {
       const joke = await getJokeService();
-      setJoke(joke); // Mise à jour de l’état via le store
+      setJoke(joke);
     } catch (error: any) {
       console.error('Error fetching joke:', error.message);
     }

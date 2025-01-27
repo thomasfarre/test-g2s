@@ -1,11 +1,21 @@
 <template>
   <div class="center-text">
     <div class="center-text__input-wrapper">
-      <label class="center-text__label" for="text">Modifier le texte</label>
-      <input v-model="text" type="text" placeholder="Modifier le texte" class="center-text__input" />
+      <label
+        class="center-text__label"
+        for="text">Modifier le texte
+      </label>
+      <input
+        v-model="text"
+        type="text"
+        placeholder="Modifier le texte"
+        class="center-text__input"
+      />
     </div>
     <div class="center-text__wrapper">
-      <span class="center-text__text">{{ text }}</span>
+      <span class="center-text__text">
+        {{ text }}
+      </span>
     </div>
   </div>
 </template>

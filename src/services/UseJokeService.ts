@@ -12,7 +12,6 @@ export const useJokeService = () => {
         throw new Error(response.data.message || 'Unknown error occurred');
       }
 
-      // Transformation des données avec le mapper
       return jokeDtoToJoke(response.data);
     } catch (error: any) {
       throw new Error(error.response?.data?.message || 'Unknown error occurred');
