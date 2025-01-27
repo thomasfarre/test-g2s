@@ -10,10 +10,27 @@
       <li class="home__exercise"><strong>Exercice 3 :</strong> Utiliser l'API fictive https://jsonplaceholder.typicode.com/ pour afficher une liste de publications. Ajouter un formulaire pour créer une nouvelle publication, afficher les détails de la publication lorsqu'elle est sélectionnée, et permettre la mise à jour et la suppression des publications.</li>
     </ul>
     <p class="home__description">
-      Pour plus de détails, visitez le <a href="https://github.com/thomasfarre/test-g2s">dépôt GitHub</a>.
+      Pour plus de détails <a href="https://github.com/thomasfarre/test-g2s">GitHub repo</a>.
     </p>
     <p class="home__description">
-      J'ai créé ce projet sur GitHub et l'ai déployé car j'ai eu du mal à modifier la configuration sur CodeSandbox pour ajouter des tests à mon rendu d'exercice. J'avais à cœur de réaliser le test le mieux possible, aucun prétention de ma part. J'espère que cela vous convienne !
+      J'ai créé ce projet sur GitHub car j'ai eu du mal à modifier la configuration sur CodeSandbox pour ajouter des tests unitaires (Vitest, Vue Test Utils, Jest etc...). <br> J'avais à cœur de réaliser le test le mieux possible, aucune prétentions de ma part. J'espère que cela vous convient
+    </p>
+    <p class="home__description">
+      De manière générale pour réaliser ce test technique
+    </p>
+    <ul class="home__list">
+      <li class="home__list-item">
+        J'ai essayé de coller le plus possible à l'architecture de l'entreprise tel que je l'ai comprise (hexagonale, fonction englobantes etc...)
+      </li>
+      <li class="home__list-item">
+        Fait très peu de CSS, mais respecté la méthodologie BEM
+      </li>
+      <li class="home__list-item">
+        Ecrit des tests unitaires pour pas mal de choses, composants, store etc...
+      </li>
+    </ul>
+    <p class="home__description">
+      Ce que j'ai fais est largement perfectible, mais je pense que cela donne une idée de ce que je suis capable de faire et j'espère pouvoir vous apporter ma contribution et avoir la chance de continuer d'apprendre avec vous. Merci d'avance pour le temps que vous passerez à lire ce test technique !
     </p>
   </div>
 </template>
@@ -47,8 +64,12 @@
 }
 
 .home__exercise {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem; /* Increased margin for more vertical space */
   font-size: 1.2em;
   color: #555;
+}
+
+.home__list-item {
+  margin-bottom: 1rem; /* Added margin for vertical space between list items */
 }
 </style>
