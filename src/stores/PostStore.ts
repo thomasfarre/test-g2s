@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { usePostService } from '../services/usePostService';
+import { usePostService } from '../services/UsePostService';
 import { Post } from '../models/Post';
 
 export const usePostStore = defineStore('post', () => {
