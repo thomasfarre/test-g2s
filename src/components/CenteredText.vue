@@ -1,6 +1,9 @@
 <template>
   <div class="center-text">
-    <input v-model="text" type="text" placeholder="Modifier le texte" class="center-text__input" />
+    <div class="center-text__input-wrapper">
+      <label class="center-text__label" for="text">Modifier le texte</label>
+      <input v-model="text" type="text" placeholder="Modifier le texte" class="center-text__input" />
+    </div>
     <div class="center-text__wrapper">
       <span class="center-text__text">{{ text }}</span>
     </div>
@@ -35,6 +38,19 @@ const text = ref("Center me");
   background: green;
   color: white;
   padding: 0.2em;
+}
+
+.center-text__label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #333;
+}
+
+.center-text__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .center-text__input {
