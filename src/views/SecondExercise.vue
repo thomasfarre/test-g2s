@@ -1,31 +1,35 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from 'vue';
-import { useJoke } from '../composables/useJoke';
+import { useJokeStore } from '../stores/jokeStore';
 
-const { joke, error, fetchJoke } = useJoke();
-const showDelivery = ref(false);
-const countdown = ref(5);
+// Utilisation du store pour accéder aux blagues et aux erreurs
+const jokeStore = useJokeStore();
+const showDelivery = ref(false);  // État pour contrôler l'affichage de la réponse
+const countdown = ref(5);  // Compteur pour le délai avant l'affichage de la réponse
 let countdownInterval: number | undefined;
 
+// Fonction pour obtenir une nouvelle blague et démarrer le compte à rebours
 const getJoke = async () => {
-  await fetchJoke();
-  showDelivery.value = false;
-  countdown.value = 5;
-  startCountdown();
+  await jokeStore.fetchJoke();  // Récupération de la blague via le store
+  showDelivery.value = false;  // Masquer la réponse initialement
+  countdown.value = 5;  // Réinitialiser le compteur
+  startCountdown();  // Démarrer le compte à rebours
 };
 
+// Fonction pour gérer le compte à rebours
 const startCountdown = () => {
-  clearInterval(countdownInterval);
+  clearInterval(countdownInterval);  // Nettoyer tout intervalle existant
   countdownInterval = setInterval(() => {
     if (countdown.value > 0) {
-      countdown.value--;
+      countdown.value--;  // Décrémenter le compteur
     } else {
-      showDelivery.value = true;
-      clearInterval(countdownInterval);
+      showDelivery.value = true;  // Afficher la réponse une fois le temps écoulé
+      clearInterval(countdownInterval);  // Arrêter le compte à rebours
     }
   }, 1000);
 };
 
+// Nettoyer l'intervalle lors du démontage du composant
 onUnmounted(() => {
   clearInterval(countdownInterval);
 });
@@ -36,11 +40,11 @@ onUnmounted(() => {
     <h1 class="title">Exercice 2</h1>
     <p class="description">Au clic sur un nouveau bouton, afficher une blague aléatoire en utilisant l'api https://jokeapi.dev/. Afficher la question de la blague puis après un temps d'attente de 5 secondes afficher la réponse. NB : L'affichage (disposition, transition,..) est laissé libre.</p>
     <button @click="getJoke">Obtenir une blague</button>
-    <div v-if="error" class="error">{{ error }}</div>
-    <div v-if="joke" class="joke-container">
-      <p>{{ joke.setup }}</p>
+    <div v-if="jokeStore.error" class="error">{{ jokeStore.error }}</div>
+    <div v-if="jokeStore.joke" class="joke-container">
+      <p>{{ jokeStore.joke.setup }}</p>
       <p v-if="!showDelivery">Réponse dans: {{ countdown }} secondes</p>
-      <p v-if="showDelivery">{{ joke.delivery }}</p>
+      <p v-if="showDelivery">{{ jokeStore.joke.delivery }}</p>
     </div>
   </div>
 </template>
