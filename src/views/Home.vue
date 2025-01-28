@@ -13,7 +13,7 @@
       Pour plus de détails <a href="https://github.com/thomasfarre/test-g2s">GitHub repo</a>.
     </p>
     <p class="home__description">
-      J'ai créé ce projet sur GitHub car j'ai eu du mal à modifier la configuration sur CodeSandbox pour ajouter des tests unitaires (Vitest, Vue Test Utils, Jest etc...). <br> J'avais à cœur de réaliser le test le mieux possible, aucune prétentions de ma part. J'espère que cela vous convient
+      J'ai créé ce projet sur Github car j'ai eu du mal à modifier la configuration sur CodeSandbox pour ajouter des tests unitaires (Vitest, Vue Test Utils, Jest etc...). <br> J'avais à cœur de réaliser le test le mieux possible, aucune prétentions de ma part. J'espère que cela vous convient
     </p>
     <p class="home__description">
       De manière générale pour réaliser ce test technique
@@ -27,6 +27,9 @@
       </li>
       <li class="home__list-item">
         Ecrit des tests unitaires pour pas mal de choses, composants, store etc...
+      </li>
+      <li class="home__list-item">
+        Setup une CI sur Github pour lancer les tests après chaque push
       </li>
     </ul>
     <p class="home__description">
@@ -64,12 +67,12 @@
 }
 
 .home__exercise {
-  margin-bottom: 2rem; /* Increased margin for more vertical space */
+  margin-bottom: 2rem;
   font-size: 1.2em;
   color: #555;
 }
 
 .home__list-item {
-  margin-bottom: 1rem; /* Added margin for vertical space between list items */
+  margin-bottom: 1rem;
 }
 </style>
